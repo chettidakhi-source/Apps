@@ -7,6 +7,7 @@ Une application web moderne pour la gestion des séances de dialyse, construite 
 - **Tableau de bord des séances** : Affichage des séances du jour avec statuts en temps réel
 - **Statistiques** : Suivi des séances hebdomadaires, taux d'observance et séances annulées
 - **Planning des patients** : Vue des prochaines séances programmées
+- **Export PDF complet** : Génération de rapports et documents PDF
 - **Interface moderne** : Design responsive et accessible
 - **Composants réutilisables** : Architecture modulaire avec shadcn/ui
 
@@ -18,6 +19,8 @@ Une application web moderne pour la gestion des séances de dialyse, construite 
 - **shadcn/ui** : Composants UI modernes et accessibles
 - **Lucide React** : Icônes vectorielles
 - **Radix UI** : Composants primitifs accessibles
+- **jsPDF** : Génération de PDF côté client
+- **html2canvas** : Capture d'éléments HTML
 
 ## 📦 Installation
 
@@ -53,7 +56,9 @@ dialysis-app/
 │   │   │   ├── button.tsx
 │   │   │   ├── card.tsx
 │   │   │   └── badge.tsx
-│   │   └── SessionTracking.tsx  # Composant principal
+│   │   ├── SessionTracking.tsx  # Composant principal
+│   │   ├── PDFExport.tsx       # Export PDF
+│   │   └── PDFPreview.tsx      # Prévisualisation PDF
 │   └── lib/               # Utilitaires
 │       └── utils.ts       # Fonctions utilitaires
 ├── public/                # Assets statiques
@@ -67,6 +72,13 @@ Le composant principal qui affiche :
 - **Séances du jour** : Liste des séances avec statuts (En cours, Programmée, Terminée)
 - **Statistiques** : Métriques hebdomadaires et taux d'observance
 - **Prochaines séances** : Planning des patients à venir
+
+### PDFExport
+Composant d'export PDF avec :
+- **Rapport des séances** : Document complet avec statistiques
+- **Liste des patients** : Référence des patients actifs
+- **Planning quotidien** : Planning détaillé par créneaux
+- **Export d'interface** : Capture de l'interface complète
 
 ### Interface Patient
 ```typescript
@@ -96,6 +108,24 @@ interface Session {
 - **En cours** : Séance actuellement en cours (vert)
 - **Programmée** : Séance planifiée (orange)
 - **Terminée** : Séance terminée (bleu)
+
+## 📄 Export PDF
+
+L'application inclut des fonctionnalités complètes d'export PDF :
+
+### Types de Rapports
+- **Rapport des Séances** : Document complet avec statistiques et séances du jour
+- **Liste des Patients** : Référence des patients actifs avec leurs informations
+- **Planning Quotidien** : Planning détaillé par créneaux horaires
+- **Rapport Complet** : Capture de l'interface avec design optimisé
+
+### Fonctionnalités
+- **Génération côté client** : Aucune donnée envoyée au serveur
+- **Format A4** : Optimisé pour l'impression
+- **Pagination automatique** : Gestion des longs contenus
+- **Encodage UTF-8** : Support complet du français
+
+*Voir `DOCUMENTATION_PDF.md` pour plus de détails techniques.*
 
 ## 📱 Responsive Design
 

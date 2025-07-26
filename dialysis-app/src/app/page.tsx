@@ -1,4 +1,5 @@
 import SessionTracking from "@/components/SessionTracking"
+import PDFExport from "@/components/PDFExport"
 
 // Sample patient data
 const samplePatients = [
@@ -39,6 +40,21 @@ const samplePatients = [
   }
 ]
 
+// Sample session data
+const sampleSessions = [
+  { id: 1, patient: "Jean Dupont", heure: "08:00", duree: "4h", status: "En cours", poste: "A1" },
+  { id: 2, patient: "Marie Martin", heure: "08:30", duree: "4h", status: "Programmée", poste: "A2" },
+  { id: 3, patient: "Pierre Durand", heure: "13:00", duree: "4h", status: "Programmée", poste: "B1" },
+  { id: 4, patient: "Sophie Leroy", heure: "13:30", duree: "4h", status: "Programmée", poste: "B2" },
+]
+
+// Sample statistics data
+const sampleStatistics = {
+  seancesCetteSemaine: 24,
+  seancesAnnulees: 2,
+  tauxObservance: 92
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 p-8">
@@ -47,7 +63,15 @@ export default function Home() {
           <h1 className="text-3xl font-bold text-gray-900">Centre de Dialyse</h1>
           <p className="text-gray-600 mt-2">Tableau de bord des séances</p>
         </div>
-        <SessionTracking patients={samplePatients} />
+        
+        <div className="grid gap-8">
+          <SessionTracking patients={samplePatients} />
+          <PDFExport 
+            patients={samplePatients}
+            sessions={sampleSessions}
+            statistics={sampleStatistics}
+          />
+        </div>
       </div>
     </main>
   )
